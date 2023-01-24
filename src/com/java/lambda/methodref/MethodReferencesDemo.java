@@ -1,6 +1,6 @@
 package com.java.lambda.methodref;
 
-import java.util.Locale;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -51,6 +51,35 @@ public class MethodReferencesDemo {
         // 3. Reference to the instance method of an arbitrary object
         // Sometimes, we call a method of argument in the lambda expression.
         // In that case, we can use a method reference to call an instance
-        // method of
+        // method of an arbitrary object of a specific type.
+
+        Function<String, String> stringFunction = (input) -> input.toLowerCase();
+        System.out.println(stringFunction.apply("Java Guides"));
+
+        // using method reference
+        Function<String, String> stringFunctionMethodRef = String::toLowerCase;
+        System.out.println(stringFunction.apply("Java Guides"));
+
+        String[] strArray = {"A", "E", "I", "O", "U", "a", "e", "i", "o", "u"};
+
+        //using lambda
+        Arrays.sort((strArray), (s1, s2) -> s1.compareToIgnoreCase(s2));
+
+        //using method reference
+        Arrays.sort(strArray, String::compareToIgnoreCase);
+
+        // 4. reference to a constructor
+        List<String> fruits = new ArrayList<>();
+        fruits.add("Banana");
+        fruits.add("apple");
+        fruits.add("mango");
+        fruits.add("watermelon");
+
+        Function<List<String>, Set<String>> setFunction = (fruitsList) -> new HashSet<>(fruitsList);
+        System.out.println(setFunction.apply(fruits));
+
+        // method reference
+        Function<List<String>, Set<String>> setFunctionMethodRef = HashSet::new;
+        System.out.println(setFunctionMethodRef.apply(fruits));
     }
 }
