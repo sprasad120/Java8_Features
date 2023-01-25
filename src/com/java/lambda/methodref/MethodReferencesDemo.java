@@ -1,6 +1,6 @@
 package com.java.lambda.methodref;
 
-import java.util.*;
+import java.util.* ;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
